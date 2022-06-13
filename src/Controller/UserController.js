@@ -85,9 +85,9 @@ export const changePassword = async ( req, res = response ) => {
 
     try {
 
-        const { currentPassword, newPassword } = req.body;
+        const { uid,currentPassword, newPassword } = req.body;
 
-        const passworddb = await pool.query('SELECT passwordd FROM users WHERE persona_id = ?', [req.uid]);
+        const passworddb = await pool.query('SELECT passwordd FROM users WHERE persona_id = ?', [uid]);
 
         if( !await bcrypt.compareSync( currentPassword, passworddb[0].passwordd )){
             return res.status(401).json({
@@ -146,8 +146,8 @@ export const changeImageProfile = async (req, res = response) => {
 export const getAddressesUser = async (req, res = response ) => {
 
     try {
-
-        const addressesdb = await pool.query('SELECT id, street, reference, Latitude, Longitude FROM addresses WHERE persona_id = ?', [req.uid]);
+        const uid = req.params.id;
+        const addressesdb = await pool.query('SELECT id, street, reference, Latitude, Longitude FROM addresses WHERE persona_id = ?', [uid]);
 
         res.json({
             resp: true,

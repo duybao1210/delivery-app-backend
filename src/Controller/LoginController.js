@@ -36,7 +36,7 @@ export const loginController = async ( req, res = response ) => {
 
         res.json({
             resp: true,
-            msg : 'Welcome to Frave Restaurant',
+            msg : 'success',
             user: {
                 uid: user.uid,
                 firstName: user.firstName,

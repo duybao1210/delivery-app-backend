@@ -6,9 +6,8 @@ export const addNewOrders = async (req, res = response ) => {
 
     try {
 
-        const { uidAddress, total, typePayment,  products } = req.body;
-
-        const orderdb = await pool.query('INSERT INTO orders (client_id, address_id, amount, pay_type) VALUES (?,?,?,?)', [ req.uid, uidAddress, total, typePayment ]);
+        const { uid,uidAddress, total, typePayment,  products } = req.body;
+        const orderdb = await pool.query('INSERT INTO orders (client_id, address_id, amount, pay_type) VALUES (?,?,?,?)', [ uid, uidAddress, total, typePayment ]);
 
         products.forEach(o => {
              pool.query('INSERT INTO orderDetails (order_id, product_id, quantity, price) VALUES (?,?,?,?)', [ orderdb.insertId, o.uidProduct, o.quantity, o.quantity * o.price ]);

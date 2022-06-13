@@ -14,7 +14,7 @@ router.get('/get-all-orders-by-delivery/:statusOrder', orders.getOrdersByDeliver
 router.put('/update-status-order-on-way/:idOrder', orders.updateStatusToOntheWay );
 router.put('/update-status-order-delivered/:idOrder', orders.updateStatusToDelivered );
 
-router.get('/get-list-orders-for-client', client.getListOrdersForClient);
+router.get('/get-list-orders-for-client/:id', client.getListOrdersForClient);
 
 
 export default router;

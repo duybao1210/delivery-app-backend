@@ -5,8 +5,8 @@ import pool from '../Database/mysql';
 export const getListOrdersForClient = async (req, res = response) => {
 
     try {
-
-        const listdb = await pool.query(`CALL SP_ORDERS_FOR_CLIENT(?);`, [req.uid]);
+        const uid = req.params.id;
+        const listdb = await pool.query(`CALL SP_ORDERS_FOR_CLIENT(?);`, [uid]);
 
         res.json({
             resp: true,
